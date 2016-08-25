@@ -1,0 +1,28 @@
+@CHARSET "UTF-8";
+
+
+body {
+	font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, Osaka, 'MS PGothic', arial, helvetica, sans-serif;
+/* 	background-image: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('../img/back.jpg');
+	background-repeat: repeat;
+	background-size:100px auto; */
+
+}
+
+.changing ul {
+	line-height: 30px;
+	overflow: hidden;
+}
+
+.empha {
+	color:green;
+	font-weight:bold;
+}
+
+.mana {
+	color: white;
+	text-shadow: 1px  1px 2px blue,
+            -1px  1px 2px blue,
+             1px -1px 2px blue,
+            -1px -1px 2px blue;
+}

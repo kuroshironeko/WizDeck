@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link type="text/css" rel="stylesheet" href="../css/jquery-ui.min.css" />
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="../css/common.css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+	$(document).ready(function() {
+		$(".charaname").autocomplete({
+			source : function(req, resp) {
+				$.ajax({
+					url : "search.php",
+					type : "POST",
+					cache : false,
+					dataType : "json",
+					data : {
+						charaname : req.term
+					},
+					success : function(o) {
+						resp(o);
+					},
+					error : function(xhr, ts, err) {
+						resp([ '' ]);
+					}
+				});
+			}
+		});
+	});
+</script>
+<meta charset="UTF-8">
+<title>黒猫のウィズ　デッキ作成ツール</title>
+</head>
+<body>
+<div class="bg-filter">
+	<div class="container">
+		<h1>黒猫のウィズ　デッキ作成ツール</h1>
+		精霊の名前を入力して下さい。一部入力すると候補が表示されます。<br>
+		存在しない精霊は無視されます。<br><br>
+		<form action="result.php" method="POST">
+			<div class="form-group">
+				<label>No1</label>
+				<input type="text" class="charaname form-control" name="charaData[0]">
+				<label>No2</label>
+				<input type="text" class="charaname form-control" name="charaData[1]">
+				<label>No3</label>
+				<input type="text" class="charaname form-control" name="charaData[2]">
+				<label>No4</label>
+				<input type="text" class="charaname form-control" name="charaData[3]">
+				<label>No5</label>
+				<input type="text" class="charaname form-control" name="charaData[4]">
+				<br>
+  				<label><input type="checkbox" name="mana" value="true" checked="checked"> マナ +200 を含める</label>
+			</div>
+			<button type="submit" class="btn-lg btn-primary">デッキ作成</button>
+		</form>
+	</div>
+</div>
+</body>
+</html>
