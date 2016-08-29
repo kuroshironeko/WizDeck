@@ -1,14 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
 
-<link type="text/css" rel="stylesheet" href="../css/jquery-ui.min.css" />
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<link type="text/css" rel="stylesheet" href="../css/common.css" />
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
+<meta name="description" content="">
+<meta name="author" content="">
+<title>黒ウィズ　デッキ作成</title>
+
+<link type="text/css" rel="stylesheet" href="../css/jquery-ui.min.css" />
+
+<!-- Bootstrap core CSS -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+<!-- Custom styles -->
+<link type="text/css" rel="stylesheet" href="../css/common.css" />
+
+<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+<script src="../js/ie-emulation-modes-warning.js"></script>
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-md-12">
+				<h1>黒ウィズ　デッキ作成シミュレータ</h1>
+				精霊の名前を入力して下さい。一部入力すると候補が表示されます。<br>
+				存在しない精霊は無視されます。<br><br>
+				<form action="result.php" method="POST">
+					<div class="form-group">
+						<label>No1</label>
+						<input type="text" class="charaname form-control" name="charaData[0]">
+						<label>No2</label>
+						<input type="text" class="charaname form-control" name="charaData[1]">
+						<label>No3</label>
+						<input type="text" class="charaname form-control" name="charaData[2]">
+						<label>No4</label>
+						<input type="text" class="charaname form-control" name="charaData[3]">
+						<label>No5</label>
+						<input type="text" class="charaname form-control" name="charaData[4]">
+						<br>
+		  				<label><input type="checkbox" name="mana" value="true" checked="checked"> マナ +200 を含める</label>
+					</div>
+					<button type="submit" class="btn-lg btn-primary">デッキ作成</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+<script>window.jQuery || document.write('<script src="../js/vendor/jquery.min.js"><\/script>')</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../js/ie10-viewport-bug-workaround.js"></script>
 <script>
 	$(document).ready(function() {
 		$(".charaname").autocomplete({
@@ -32,33 +92,6 @@
 		});
 	});
 </script>
-<meta charset="UTF-8">
-<title>黒猫のウィズ　デッキ作成ツール</title>
-</head>
-<body>
-<div class="bg-filter">
-	<div class="container">
-		<h1>黒猫のウィズ　デッキ作成ツール</h1>
-		精霊の名前を入力して下さい。一部入力すると候補が表示されます。<br>
-		存在しない精霊は無視されます。<br><br>
-		<form action="result.php" method="POST">
-			<div class="form-group">
-				<label>No1</label>
-				<input type="text" class="charaname form-control" name="charaData[0]">
-				<label>No2</label>
-				<input type="text" class="charaname form-control" name="charaData[1]">
-				<label>No3</label>
-				<input type="text" class="charaname form-control" name="charaData[2]">
-				<label>No4</label>
-				<input type="text" class="charaname form-control" name="charaData[3]">
-				<label>No5</label>
-				<input type="text" class="charaname form-control" name="charaData[4]">
-				<br>
-  				<label><input type="checkbox" name="mana" value="true" checked="checked"> マナ +200 を含める</label>
-			</div>
-			<button type="submit" class="btn-lg btn-primary">デッキ作成</button>
-		</form>
-	</div>
-</div>
+
 </body>
 </html>

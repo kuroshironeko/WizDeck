@@ -17,11 +17,6 @@ $errorBack = "<a href='index.html' class='alert-link'>こちら</a>からデッ�
 $errorStr = "エラーが発生しました。<br>".$errorBack;
 // エラー文字（入力なし）
 $errorNoStr = "エラーが発生しました。<br>精霊の名前を1体以上入力して下さい。<br>".$errorBack;
-// エラー文字（該当なし）
-$errorNoHitStr = "<div class='alert alert-warning' role='alert'>
-		<span class='glyphicon glyphicon-exclamation-sign lead' aria-hidden='true'></span>
-		<span class='lead'>該当する精霊が存在しませんでした。</span><br>".$errorBack
-		."</div>";
 
 // 精霊データの取得
 $charaData = filter_input ( INPUT_POST, "charaData", FILTER_DEFAULT, FILTER_REQUIRE_ARRAY );
@@ -190,33 +185,55 @@ foreach ($charaParamList as $dataBean) {
 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="description" content="">
+<meta name="author" content="">
+<title>黒ウィズ　デッキ作成</title>
 
 <link type="text/css" rel="stylesheet" href="../css/jquery-ui.min.css" />
+
+<!-- Bootstrap core CSS -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+<!-- Custom styles -->
 <link type="text/css" rel="stylesheet" href="../css/common.css" />
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../js/common.js"></script>
 
+<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+<script src="../js/ie-emulation-modes-warning.js"></script>
 
-<meta charset="UTF-8" />
-<title>デッキ作成結果</title>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
 </head>
 <body>
 
-<div class="container">
-<h1>黒ウィズ　デッキ作成ツール</h1>
-<h2>作成結果</h2>
-<div class="table-responsive">
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 col-md-12">
+				<h1>黒ウィズ　デッキ作成シミュレータ</h1>
+				<h2>結果</h2>
+				<div class="table-responsive">
 <?php
 
 // 該当精霊が居なかったらエラー
 if (count ( $charaParamList ) == 0) {
 	echo $errorNoHitStr;
-	echo "</body></html>";
+	// 警告終了
+	$url = "$serverName/WizDeck/main/error.php?status=nohit";
+	header("Location: {$url}");
 	return;
 } else {
 	echo  "<table class='table table-bordered table-condensed'>";
@@ -290,14 +307,26 @@ if (count ( $charaParamList ) == 0) {
 }
 
 ?>
-</tr>
-</table>
+				</tr>
+			</table>
+			</div>
+			<br>
+			<a href="index.html" class="btn btn-default">戻る</a>
+		</div>
+	</div>
 </div>
-<br>
-<a href="index.html" class="btn btn-default">戻る</a>
 
-</div>
-
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+<script>window.jQuery || document.write('<script src="../js/vendor/jquery.min.js"><\/script>');</script>
+<script src="../js/bootstrap.min.js"></script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="../js/ie10-viewport-bug-workaround.js"></script>
+<!-- Custom js -->
+<script src="../js/common.js"></script>
 
 </body>
 </html>
