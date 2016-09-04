@@ -17,6 +17,7 @@ class CharaParamBean {
 	private $drop;
 	private $exp;
 	private $gold;
+	private $charaId;
 
 
 	public function __construct() {
@@ -36,6 +37,7 @@ class CharaParamBean {
 		$this->drop = 0;
 		$this->exp = 0;
 		$this->gold = 0;
+		$this->charaId = 0;
 	}
 
 	public function getName () {
@@ -133,6 +135,12 @@ class CharaParamBean {
 	}
 	public function setGold ($gold) {
 		$this->gold = $gold;
+	}
+	public function getCharaId () {
+		return $this->charaId;
+	}
+	public function setCharaId ($charaId) {
+		$this->charaId = $charaId;
 	}
 }
 ?>

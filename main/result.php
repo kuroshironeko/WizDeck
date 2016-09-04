@@ -56,12 +56,14 @@ foreach ($charaData as $i ) {
 // DB接続
 $adb = new Adb ();
 // キャラデータの取得
-$outData = $adb->getCharaDataList ( $inputData );
+$outData = $adb->getCharaDataListByName( $inputData );
 
 // キャラ自身の能力値リスト（セルフバフのみ）
 $charaParamList = array();
 // 全体UPリスト
 $upAllParamList = array();
+// キャラID
+$charaIds = "";
 
 foreach ($outData as $record) {
 	// DBに該当する精霊が存在すれば計算
@@ -82,6 +84,8 @@ foreach ($outData as $record) {
 		$charaParamBean->setAttri($record[0][4]);
 		// 種族のセット
 		$charaParamBean->setTribe($record[0][5]);
+		// IDのセット
+		$charaParamBean->setCharaId($record[0][25]);
 
 		// マナプラス加算
 		if ($manaOnOff) {
@@ -241,6 +245,14 @@ if (count ( $charaParamList ) == 0) {
 	for ( $i = 1; $i <=  sizeof($charaParamList); $i++) {
 		// No
 		echo "<td>No$i</td>";
+		$charaIds = $charaIds.$charaParamList[$i-1]->getCharaId();
+		if ($i != sizeof($charaParamList)) {
+			$charaIds = $charaIds."-";
+		} else {
+			if ($manaOnOff) {
+				$charaIds = $charaIds."m";
+			}
+		}
 	}
 	echo "</tr>";
 	echo 	"<tr>";
@@ -305,13 +317,16 @@ if (count ( $charaParamList ) == 0) {
 		echo "<td id='param" . $cnt . "Cos'>コスト:" . $disp . "</td>";
 	}
 }
-
 ?>
 				</tr>
 			</table>
 			</div>
-			<br>
-			<a href="index.html" class="btn btn-default">戻る</a>
+			<!-- Twitterボタン -->
+			作成したデッキをツイートしよう！<br>
+			<a href="https://twitter.com/share" class="twitter-share-button" data-url=<?=$serverName."/WizDeck/main/share.php?id=$charaIds"; ?> data-text="黒ウィズデッキシミュレータ｜デッキを公開します！" data-size="large">Tweet</a>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+			<br><br>
+			<a href="index.html" class="btn btn-default">戻る</a><br>
 		</div>
 	</div>
 </div>
